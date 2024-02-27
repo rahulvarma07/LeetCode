@@ -13,8 +13,6 @@ public:
             maxx = max(maxx,diff);
             right += 1;
             left += 1;
-            // cout<<left<<" "<<right;
-            // cout<<endl;
         }
         return maxx;
     }
