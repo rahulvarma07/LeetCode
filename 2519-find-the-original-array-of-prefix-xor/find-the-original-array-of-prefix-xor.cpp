@@ -3,11 +3,12 @@ public:
     vector<int> findArray(vector<int>& pref) 
     {
         int n = pref.size();
-        vector<int>ans(n,0);
-        ans[0] = pref[0];
+        vector<int>ans;
+        ans.push_back(pref[0]);
         for(int i = 1; i < n; i++)
         {
-            ans[i] = pref[i]^pref[i-1];
+            int x = pref[i] ^ pref[i-1];
+            ans.push_back(x);
         }
         return ans;
     }
