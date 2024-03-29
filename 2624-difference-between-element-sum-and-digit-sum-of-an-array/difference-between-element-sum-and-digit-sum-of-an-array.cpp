@@ -2,6 +2,10 @@ class Solution {
 public:
     int differenceOfSum(vector<int>& nums) 
     {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+    
         int sum1 = 0;
         int sum2 = 0;
         for(auto a: nums) sum1 += a;
