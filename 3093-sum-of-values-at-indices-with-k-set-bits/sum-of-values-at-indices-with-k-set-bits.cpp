@@ -2,7 +2,6 @@ class Solution {
 public:
     int sumIndicesWithKSetBits(vector<int>& nums, int k) 
     {
-        vector<int>indices;
         int count = 0;
         int sum = 0;
         for(int i = 0; i < nums.size(); i ++)
