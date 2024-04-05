@@ -3,17 +3,6 @@ public:
     string makeGood(string s) 
     {
         stack<char>st;
-        for(int i = 0 ; i < s.size(); i ++)
-        {
-            if(s[i] >= 'A' and s[i] <= 'Z')
-            {
-                if(tolower(s[i]) == (s[i+1]))
-                {
-                    swap(s[i], s[i+1]);
-                }
-            }
-        }
-        cout << s;
         for(int i = 0; i < s.size() ; i ++)
         {
             if(s[i] >= 'a' and s[i] <= 'z')
