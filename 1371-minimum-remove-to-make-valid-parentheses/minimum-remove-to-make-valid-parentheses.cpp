@@ -4,21 +4,24 @@ public:
     {
         int count = 0;
         string ans = "";
+        stack<char>st;
+        stack<char>ans1;
         for(int i = 0; i < s.size(); i ++)
         {
             if(s[i] == '(')
             {
-                count += 1; // st.push;
+                st.push(s[i]); 
             }
             if(s[i] == ')')
             {
-                if(count == 0)
+                if(! st.empty())
                 {
-                    s[i] = '#';
+                  if(st.top() == '(') st.pop();
+    
                 }
                 else
                 {
-                    count -= 1;
+                    s[i] = '#';
                 }
             }
         }
@@ -27,17 +30,17 @@ public:
         {
             if(s[i] == ')')
             {
-                count += 1;
+                ans1.push(s[i]);
             }
             if(s[i] == '(')
             {
-                if(count == 0)
+                if(! ans1.empty())
                 {
-                   s[i] = '#';
+                   if(ans1.top() == ')') ans1.pop();
                 } 
                 else
                 {
-                    count -= 1;
+                    s[i] = '#';
                 }
             }
         }
