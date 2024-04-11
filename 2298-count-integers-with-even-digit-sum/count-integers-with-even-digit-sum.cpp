@@ -15,7 +15,6 @@ public:
             }
             if(check % 2 == 0)
             {
-                cout << check << " ";
                 sum += 1;
             }
         }
