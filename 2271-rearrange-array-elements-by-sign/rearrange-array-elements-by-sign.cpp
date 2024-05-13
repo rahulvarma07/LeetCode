@@ -2,6 +2,11 @@ class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
        vector<int>ans(nums.size(), 0);
+       /*
+       My Brute Force approach
+       1. Take an array fix first half with positive and second half with negative.
+       2. And alternatly arrange them
+       */
        int pi = 0;
        int ni = nums.size() / 2;
        for(int i = 0 ; i < nums.size(); i++)
