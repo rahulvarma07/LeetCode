@@ -1,24 +1,36 @@
 class Solution {
 public:
-    void comb(int i, int k, vector<int>candidates, vector<vector<int>>&ans, vector<int>add)
+    void com(int ind, int s, int k, vector<int>candidates, vector<int>p, vector<vector<int>>& ans)
     {
-        if(i >= candidates.size())
+        if(ind >= candidates.size())
         {
-            if(k == 0) ans.push_back(add);
+            if(s == k)
+            {
+                ans.push_back(p);
+            }
             return;
         }
-        if(candidates[i] <= k)
+        if(s == k)
         {
-            add.push_back(candidates[i]);
-            comb(i , k - candidates[i], candidates, ans, add);
-            add.pop_back();
+            ans.push_back(p);
+            return;
         }
-        comb(i+1, k, candidates, ans, add);
+        if(s > k)
+        {
+            return;
+        }
+        p.push_back(candidates[ind]);
+        com(ind, s + candidates[ind], k , candidates, p, ans);
+        p.pop_back();
+        com(ind + 1, s, k, candidates, p, ans);
+
     }
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) 
+    {
+        vector<int>push;
         vector<vector<int>>ans;
-        vector<int>add;
-        comb(0, target, candidates, ans, add);
+        int sum = 0, index = 0;
+        com(index, sum, target, candidates, push, ans);
         return ans;
     }
 };
