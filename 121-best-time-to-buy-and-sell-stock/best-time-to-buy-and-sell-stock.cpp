@@ -6,6 +6,9 @@ public:
     */
     int maxProfit(vector<int>& prices) 
     {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        
         int minn = prices[0];
         int profit = 0;
         int maxx = 0;
