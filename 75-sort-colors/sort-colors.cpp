@@ -1,37 +1,37 @@
 class Solution {
 public:
-    void sortColors(vector<int>& nums) {
+    void sortColors(vector<int>& nums) 
+    {
         /*
-        1. Take three variables to maintain the count.
-        2. Count 0 , 1, and 2
-        3. Rearrange the array according to the count.
-        4. Optimal compared to sorting : Nlogn
-        5. Time complexity 2n.
+        Most Optimal Solution ## Dutch Flag Algorithm ##
+        // Example [2, 0 , 2, 1, 1, 0]
+        // take three pointer's low mid and high
+        // place low and mid at 0th index 
+        // place high at n-1 th index
         */
-        int count0 = 0;
-        int count1 = 0;
-        int count2 = 0;
-        for(int i = 0; i < nums.size(); i ++)
+        /*
+        the array should be like [0 to low , low to mid , mid to n - 1]
+                                 // 0 //      // 1 //      // 2 //
+        */
+        int low = 0, mid = 0;
+        int high = nums.size() - 1;
+        while(mid <= high)
         {
-            if(nums[i] == 0)
+            if(nums[mid] == 0)
             {
-                count0 ++;
+                swap(nums[mid], nums[low]); // When 0 swap with low 
+                low += 1;
+                mid += 1;
             }
-            else if(nums[i] == 1) count1 ++;
-            else count2 ++;
-        }// n
-    for(int i = 0; i < count0 ; i ++)
-    {
-        nums[i] = 0;
-    }
-    for(int i = count0; i < count1+count0; i ++)
-    {
-        nums[i] = 1;
-    }
-    for(int i = count1+count0 ; i < nums.size(); i ++)
-    {
-        nums[i] = 2;
-    }//n
-
+            else if(nums[mid] == 1)
+            {
+                mid += 1; // when one don't swap but increment the value of mid
+            }
+            else 
+            {
+                swap(nums[mid], nums[high]);
+                high -= 1; // swap with high when 2
+            }
+        }
     }
 };
