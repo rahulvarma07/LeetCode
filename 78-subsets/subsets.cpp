@@ -1,24 +1,22 @@
 class Solution {
-public:
-    void subseq(int i, int &s, vector<int>nums, vector<int>p, vector<vector<int>>&ans)
+public: 
+    void sub(int ind, vector<int>p, vector<vector<int>>&ans, vector<int>nums)
     {
-        if(i >= s)
+        if(ind >= nums.size())
         {
             ans.push_back(p);
             return;
         }
-        p.push_back(nums[i]);
-        subseq(i + 1, s, nums, p, ans);
+        p.push_back(nums[ind]);
+        sub(ind + 1, p, ans, nums);
         p.pop_back();
-        subseq(i + 1, s, nums, p, ans);
+        sub(ind + 1, p, ans, nums);
     }
-    vector<vector<int>> subsets(vector<int>& nums) 
-    {
-        vector<vector<int>>ans;
+    vector<vector<int>> subsets(vector<int>& nums) {
         vector<int>p;
+        vector<vector<int>>ans;
         int i = 0;
-        int s = nums.size();
-        subseq(i, s, nums, p, ans);
+        sub(i, p, ans, nums);
         return ans;
     }
 };
