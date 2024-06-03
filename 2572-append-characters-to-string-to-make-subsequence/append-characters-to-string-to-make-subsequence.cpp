@@ -1,9 +1,10 @@
 class Solution {
 public:
     int appendCharacters(string s, string t) {
-        int ans = 0;
-        int i = 0; // s
-        int j = 0; // t
+        std::ios_base::sync_with_stdio(false);
+        std::cin.tie(NULL);
+        int i = 0; 
+        int j = 0;
         while(i < s.size()){
             if(s[i] == t[j]){
                 j += 1;
@@ -11,7 +12,6 @@ public:
             i += 1;
             cout << j << " " << i << " ";
         }
-        ans = t.size() - j;
-        return ans;
+        return t.size() - j;
     }
 };
