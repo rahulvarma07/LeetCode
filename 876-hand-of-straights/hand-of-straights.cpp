@@ -3,7 +3,6 @@ public:
     bool isNStraightHand(vector<int>& hand, int groupSize) {
         sort(hand.begin(), hand.end());
         unordered_map<int,int>mymap;
-        vector<int>p;
         int count = groupSize;
         int temp = groupSize;
         for(auto a:hand){
@@ -21,10 +20,10 @@ public:
                 a += 1;
             }
             if(count != 0 and count != groupSize) return false;
-            p.push_back(count);
             temp = groupSize;
             count = groupSize;
         }
+
         return true;
     }
 };
