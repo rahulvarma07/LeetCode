@@ -27,7 +27,6 @@ public:
             }
         }
         s1 += s;
-        //cout << s1;
         return s1;
     }
 };
