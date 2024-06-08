@@ -7,7 +7,8 @@ public:
         if(n == 1)return nums[0];
         if(nums[0] != nums[1]) return nums[0];
         if(nums[n-1] != nums[n-2]) return nums[n-1];
-
+        ios_base::sync_with_stdio(0);
+        cin.tie(nullptr);
         int strt = 1, end = n-2;
         while(strt <= end){
             int mid = (strt + end)/2;
