@@ -1,24 +1,19 @@
 class Solution {
 public:
-    int BS(vector<int>nums, int k, int l, int r){
-        if(l > r){
-            return - 1;
+    int BinSer(vector<int>nums, int target, int l, int h){
+        if(l > h) return -1;
+        int mid = (h + l)/2;
+        if(nums[mid] == target) return mid;
+        else if(nums[mid] > target){
+            return BinSer(nums, target, l , mid - 1);
         }
-
-        int mid = (r + l)/2;
-        if(nums[mid] == k) return mid;
-
-        else if(nums[mid] > k){
-            return BS(nums, k, l, mid -1);
-        }
-
         else{
-            return BS(nums, k, mid + 1, r);
+            return BinSer(nums, target,mid+1, h);
         }
     }
     int search(vector<int>& nums, int target) {
-        int l = 0, r = nums.size()-1;
-        int ans = BS(nums, target, l, r);
+        int low = 0, high = nums.size()-1;
+        int ans = BinSer(nums, target, low, high);
         return ans;
     }
 };
