@@ -1,23 +1,14 @@
 class Solution {
 public:
-    /*
-    Take the minimum element... from left -> Right..
-
-    */
-    int maxProfit(vector<int>& prices) 
-    {
-        ios_base::sync_with_stdio(false);
-        cin.tie(nullptr);
-        
-        int minn = prices[0];
-        int profit = 0;
-        int maxx = 0;
-        for(int i = 0; i < prices.size(); i++)
-        {
-            profit = prices[i] - minn;
-            maxx = max(maxx, profit);
-            minn = min(minn, prices[i]);
-        }
-        return maxx;
+    int maxProfit(vector<int>& prices) {
+       int maxx = INT_MIN;
+       int minn = prices[0];
+       for(int i = 1; i < prices.size(); i++){
+          int check = prices[i] - minn;
+          maxx = max(maxx, check);
+          minn = min(minn, prices[i]);
+       } 
+       if(maxx <= 0) return 0;
+       return maxx;
     }
 };
