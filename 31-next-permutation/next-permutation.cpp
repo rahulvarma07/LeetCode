@@ -11,7 +11,7 @@ public:
         }
 
         if(ind == -1){
-            sort(nums.begin(), nums.end());
+            reverse(nums.begin(), nums.end());
         }
 
         else{
@@ -21,7 +21,7 @@ public:
                 break;
             }
         }
-        sort(nums.begin()+ind+1, nums.end());
+        reverse(nums.begin()+ind+1, nums.end());
         }
     }
 };
