@@ -11,7 +11,8 @@ public:
                 }
             }
         }
-        //
+
+        
         for(auto r:row){
             for(int j = 0; j < matrix[0].size(); j++){
                 matrix[r][j] = 0;
