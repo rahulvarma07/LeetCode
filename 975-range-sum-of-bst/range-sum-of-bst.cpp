@@ -11,25 +11,15 @@
  */
 class Solution {
 public:
-    void travel(TreeNode* root,vector<int>&ans)
-    {
-        if(root == NULL)return;
-        ans.push_back(root->val);
-        travel(root->left,ans);
-        travel(root->right,ans);
+    void preOrd(TreeNode* root, int l, int h, int &ans){
+        if(root == NULL) return;
+        if(root->val >= l && root->val <= h) ans += root->val;
+        preOrd(root->left, l , h, ans);
+        preOrd(root->right, l , h, ans);
     }
-    int rangeSumBST(TreeNode* root, int low, int high) 
-    {
-        vector<int>ans;
-        travel(root,ans); 
-        int sum = 0;
-        for(auto a:ans)
-        {
-            if(a >= low and a <= high)
-            {
-                sum += a;
-            }
-        }
-        return sum;
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        int ans = 0;
+        preOrd(root, low, high, ans);
+        return ans;
     }
 };
