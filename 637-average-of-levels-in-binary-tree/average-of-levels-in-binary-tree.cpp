@@ -14,7 +14,6 @@ public:
     vector<double> averageOfLevels(TreeNode* root) {
         vector<double>ans;
         double lev = 0;
-        double cnt = 0;
         queue<TreeNode*>q;
         q.push(root);
         while(!q.empty()){
