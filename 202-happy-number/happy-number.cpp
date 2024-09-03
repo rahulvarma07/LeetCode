@@ -11,6 +11,6 @@ public:
             }
             n = check;
         }
-        return n==1 || n==7 ?1:0;
+        return (n==1 || n==7)?1:0;
     }
 };
