@@ -17,13 +17,11 @@ public:
         ListNode* temp = res;
         while(head != NULL){
             if(mymap.find(head->val) == mymap.end()){
-                //cout << head->val << " ";
                 res->next = head;
                 res = res->next;
                 head = head->next;
             }
             else{
-                //cout << head->val<< " ";
                 head = head->next;
             }
         }
