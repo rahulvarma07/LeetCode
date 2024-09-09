@@ -11,8 +11,6 @@
 class Solution {
 public:
     vector<vector<int>> spiralMatrix(int m, int n, ListNode* head) {
-        // m rows 
-        // n col
         ListNode* temp = head;
         vector<vector<int>>ans(m, vector<int>(n,-1));
         int l  = 0, t = 0, r = n-1, b = m-1;
