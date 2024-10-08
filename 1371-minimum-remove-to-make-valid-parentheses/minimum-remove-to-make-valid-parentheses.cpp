@@ -1,53 +1,29 @@
 class Solution {
 public:
-    string minRemoveToMakeValid(string s) 
-    {
-        int count = 0;
-        string ans = "";
-        stack<char>st;
-        stack<char>ans1;
-        for(int i = 0; i < s.size(); i ++)
-        {
-            if(s[i] == '(')
-            {
-                st.push(s[i]); 
-            }
-            if(s[i] == ')')
-            {
-                if(! st.empty())
-                {
-                  if(st.top() == '(') st.pop();
-    
-                }
-                else
-                {
-                    s[i] = '#';
-                }
-            }
+    string minRemoveToMakeValid(string s) {
+      string str = "";
+      vector<int>ind;
+      for(int i = 0; i < s.size(); i++){
+        if(str.size()>0 && s[i] == ')' && str.back() == '('){
+            str.pop_back();
+            ind.pop_back();
         }
-        count = 0;
-        for(int i = s.size()-1 ; i > -1; i --)
-        {
-            if(s[i] == ')')
-            {
-                ans1.push(s[i]);
-            }
-            if(s[i] == '(')
-            {
-                if(! ans1.empty())
-                {
-                   if(ans1.top() == ')') ans1.pop();
-                } 
-                else
-                {
-                    s[i] = '#';
-                }
-            }
+        else if(s[i] == ')' || s[i] == '('){
+            str += s[i];
+            ind.push_back(i);
         }
-        for(int i = 0; i < s.size(); i ++)
-        {
-            if(s[i] != '#') ans += s[i];
+      }
+      if(ind.size() == 0) return s;
+      str = "";
+      int x = 0;
+      for(int i = 0; i < s.size(); i++){
+        if((x < ind.size()) && (i == ind[x])){
+            x++;
         }
-        return ans;
+        else{
+            str += s[i];
+        }
+      }
+      return str;
     }
 };
