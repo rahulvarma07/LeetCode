@@ -12,7 +12,6 @@ public:
                 ans += (j-i);
                 swap(s[j], s[i]);
                 i++;
-                while(s[i] == '0' && i < s.size()) i++;
             }
         }
         cout << s << endl;
