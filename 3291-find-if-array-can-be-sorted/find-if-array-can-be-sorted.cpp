@@ -1,14 +1,6 @@
 class Solution {
 public:
     bool canSortArray(vector<int>& nums) {
-        bool isTrue = true;
-        for(int i = 1;i < nums.size(); i++){
-            if(nums[i] < nums[i-1]){
-                isTrue = false;
-                break;
-            }
-        }
-        if(isTrue) return true;
         vector<int>setBits(nums.size(), 0);
         for(int i = 0; i < nums.size(); i++){
             int n = nums[i];
@@ -29,7 +21,7 @@ public:
         }
         sort(nums.begin()+ind, nums.end());
         for(auto a: nums) cout << a << " ";
-        isTrue = true;
+        bool isTrue = true;
         for(int i = 1;i < nums.size(); i++){
             if(nums[i] < nums[i-1]){
                 isTrue = false;
