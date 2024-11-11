@@ -3,7 +3,7 @@ public:
     bool primeSubOperation(vector<int>& nums) {
         if(nums.size() == 1) return true;
         vector<int>primes(1001, 1);
-        for(int i = 2; i < 1001; i++){
+        for(int i = 2; i < 100; i++){
             if(primes[i] == 1){
                 for(int j = i*i ; j < 1001; j+=i){
                     primes[j]=0;
