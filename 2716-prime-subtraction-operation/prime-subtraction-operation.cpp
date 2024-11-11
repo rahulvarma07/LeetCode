@@ -11,7 +11,6 @@ public:
             }
         }
         for(int i = 0; i < nums.size(); i++){
-            bool isTrue = true;
             for(int j = nums[i]-1; j >= 2; j--){
                 if(primes[j] == 1 && i == 0){
                     nums[i] -= j;
@@ -24,12 +23,11 @@ public:
                     }
                 }
             }
-            for(int x = 1; x < nums.size(); x++){
-                if(nums[x] <= nums[x-1]) isTrue = false;
-            }
-            if(isTrue) return true;
         }
-        for(auto a: nums) cout << a <<" ";
-        return false;
+        bool istrue = true;
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i] <= nums[i-1]) istrue = false;
+        }
+        return istrue;
     }
 };
