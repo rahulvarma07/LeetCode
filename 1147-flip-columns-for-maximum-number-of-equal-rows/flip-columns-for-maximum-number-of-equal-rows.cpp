@@ -3,11 +3,9 @@ public:
     int maxEqualRowsAfterFlips(vector<vector<int>>& matrix) {
         map<vector<int>,int>check;
         int maxx = 1;
-        for(auto a:matrix){
-            check[a]++;
-        }
         for(int i = 0; i < matrix.size(); i++){
             vector<int>ch = matrix[i];
+            check[ch]++;
             for(int j = 0; j < ch.size(); j++){
                 ch[j] = (ch[j]==1)?0:1;
             }
