@@ -12,11 +12,7 @@ public:
             check.first *= multiplier;
             mypq.pop();
             mypq.push(check);
-        }
-        while(!mypq.empty()){
-            check = mypq.top();
             nums[check.second] = check.first;
-            mypq.pop();
         }
         return nums;
     }
