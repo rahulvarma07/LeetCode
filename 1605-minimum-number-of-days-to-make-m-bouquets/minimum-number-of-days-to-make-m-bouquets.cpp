@@ -1,8 +1,7 @@
 class Solution {
 public:
     int minDays(vector<int>& bloomDay, int m, int k) {  
-     long long int x = (long long )m*(long long)k;
-     if(x > bloomDay.size()) return -1;
+     if((long long)m*(long long)k > bloomDay.size()) return -1;
      int minnDay = INT_MAX, maxxDay = 0;
      for(auto a:bloomDay){
         minnDay = min(minnDay, a);
