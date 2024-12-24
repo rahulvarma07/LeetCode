@@ -1,14 +1,13 @@
 class Solution {
 public:
     int smallestDivisor(vector<int>& nums, int threshold) {
-        long long int sum = 0;
+        int sum = -1;
         for(auto a: nums){
-            sum += a;
+            sum = max(sum, a);
         }
-        if(sum <= threshold) return 1;
-        long long int low = 1, high = sum;
+        int low = 1, high = sum;
         while(low <= high){
-            long long int mid = (low + high)/2;
+            int mid = (low + high)/2;
             int sum  = 0;
             for(int i = 0; i < nums.size(); i++){
                 if(nums[i]%mid != 0){
