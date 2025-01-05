@@ -12,8 +12,6 @@ public:
         for(int i = n-2; i >= 0; i--){
             pref[i] = pref[i+1]+shifts[i];
         }
-        //for(auto a: pref) cout << a << " ";
-        //cout << endl;
         string str = "";
         for(int i = 0; i < n; i++){
             str += shift(s[i], pref[i]);
