@@ -1,22 +1,16 @@
 class Solution {
 public:
-    vector<int> minOperations(string boxes) 
-    {
-        vector<int>ind;
-        vector<int>ans;
-        for(int i=0;i<boxes.size();i++)
-        {
-            if(boxes[i] == '1') ind.push_back(i);
-        }
-        int sum = 0;
-        for(int i = 0; i < boxes.size(); i++)
-        {
-            sum = 0;
-            for(auto a:ind)
-            {
-                sum += abs(i - a);
+    vector<int> minOperations(string boxes) {
+        vector<int>ans(boxes.size(), 0);
+        for(int i = 0; i < boxes.size(); i++){
+            int p = 0;
+            for(int x = i-1; x >= 0; x--){
+                if(boxes[x] == '1') p += abs(i - x);
             }
-            ans.push_back(sum);
+            for(int x = i+1; x < boxes.size(); x++){
+                if(boxes[x] == '1') p += abs(x - i);
+            }
+            ans[i] = p;
         }
         return ans;
     }
