@@ -1,18 +1,18 @@
 class Solution {
 public:
-    int prefixCount(vector<string>& words, string pref) {
+    bool isPref(string pref, string str2){
+        if(str2.size() < pref.size()) return false;
         int n = pref.size();
-        int count = 0;
-        for(int i = 0; i < words.size(); i++)
-        {
-            string s = "";
-            if(words[i].size() < pref.size())continue;
-            for(int j = 0; j < pref.size(); j++)
-            {
-                s += words[i][j];
-            }
-            if(s == pref) count += 1;
+        for(int i = 0; i < n; i++){
+            if(pref[i] != str2[i]) return false;
         }
-        return count;
+        return true;
+    }
+    int prefixCount(vector<string>& words, string pref) {
+        int ans = 0;
+        for(int i = 0; i < words.size(); i++){
+            if(isPref(pref, words[i])) ans++;
+        }
+        return ans;
     }
 };
