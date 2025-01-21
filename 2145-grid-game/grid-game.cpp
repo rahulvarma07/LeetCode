@@ -8,16 +8,11 @@ public:
         for(int j = m-2; j >= 0; j--){
             pref1[j] += pref1[j+1]+grid[0][j];
             pref2[j] += pref2[j+1]+grid[1][j];
-        }
-        for(auto a:pref1) cout << a << " ";
-        cout << endl;
-        for(auto a:pref2) cout << a << " ";
-        cout << endl;  
+        }  
         long long int pf = 0;
         int i = 0; 
         for(int j = 0; j < m; j++){
             pf += grid[1][j];
-            cout << pf << " ";
             if(j+1 < m && pref2[j] > pref1[j] && pf > pref1[j+1]){
                 return max(pref1[j+1], pf-grid[1][j]);
             }
@@ -25,7 +20,6 @@ public:
                 return max(pref1[j+1], pf-grid[1][j]);
             }
         }
-        cout << "*";
         return pf-grid[1][m-1];
     }
 };
