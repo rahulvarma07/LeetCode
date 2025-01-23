@@ -19,11 +19,6 @@ public:
             if(cnt1 > 1) ans += cnt1;
         }
 
-        for(auto a: checks){
-            for(auto b:a) cout << b << " ";
-            cout << endl;
-        }
-
         for(int i = 0; i < grid.size(); i++){
             int cnt1 = 0, isTrue = false;
             for(int j = 0; j < grid[0].size(); j++){
