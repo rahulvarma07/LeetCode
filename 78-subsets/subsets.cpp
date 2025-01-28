@@ -1,21 +1,21 @@
 class Solution {
 public:
-
-    void generateSubSets(vector<int>nums, vector<int>p, vector<vector<int>>&ans, int ind){
+    void generateAllSubSets(int ind, vector<int>&store, vector<int>&nums, vector<vector<int>>&ans){
         if(ind >= nums.size()){
-            ans.push_back(p);
+            ans.push_back(store);
             return;
         }
-        p.push_back(nums[ind]);
-        generateSubSets(nums, p, ans, ind+1);
-        p.pop_back();
-        generateSubSets(nums, p, ans, ind+1);
+        store.push_back(nums[ind]);
+        generateAllSubSets(ind+1, store, nums, ans);
+        store.pop_back();
+        generateAllSubSets(ind+1, store, nums, ans);
     }
-
     vector<vector<int>> subsets(vector<int>& nums) {
+        // if(nums.size() == 0) return {};
         vector<vector<int>>ans;
-        vector<int>push;
-        generateSubSets(nums, push, ans, 0);
+        vector<int>store;
+        int ind = 0;
+        generateAllSubSets(ind, store, nums, ans);
         return ans;
     }
 };
