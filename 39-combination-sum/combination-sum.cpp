@@ -1,36 +1,30 @@
 class Solution {
 public:
-    void com(int ind, int s, int k, vector<int>candidates, vector<int>p, vector<vector<int>>& ans)
-    {
-        if(ind >= candidates.size())
-        {
-            if(s == k)
-            {
-                ans.push_back(p);
-            }
+    void compute(int i, int sum, vector<int>&check, vector<vector<int>>&ans, vector<int>&nums, int target){
+        if(i >= nums.size()){
+            if(sum == target) ans.push_back(check);
             return;
         }
-        if(s == k)
-        {
-            ans.push_back(p);
-            return;
+        if(sum == target){
+            ans.push_back(check);
         }
-        if(s > k)
-        {
-            return;
-        }
-        p.push_back(candidates[ind]);
-        com(ind, s + candidates[ind], k , candidates, p, ans);
-        p.pop_back();
-        com(ind + 1, s, k, candidates, p, ans);
-
+        if(sum+nums[i] > target) return;
+        if(sum > target) return;
+        check.push_back(nums[i]);
+        sum += nums[i];
+        compute(i, sum, check, ans, nums, target);
+        check.pop_back();
+        sum -= nums[i];
+        compute(i+1, sum, check, ans, nums, target);
     }
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) 
-    {
-        vector<int>push;
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        int sum = 0;
+        int i = 0;
         vector<vector<int>>ans;
-        int sum = 0, index = 0;
-        com(index, sum, target, candidates, push, ans);
+        vector<int>check;
+        sort(candidates.begin(), candidates.end());
+        compute(i, sum, check, ans, candidates, target);
         return ans;
     }
 };
