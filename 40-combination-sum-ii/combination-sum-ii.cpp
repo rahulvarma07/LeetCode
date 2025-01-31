@@ -1,29 +1,32 @@
 class Solution {
 public:
-    void com(int ind, int k, vector<int>candidates, vector<int>p, vector<vector<int>>&ans)
-    {
-        if(k == 0)
-        {
-            ans.push_back(p);
+    void compute(int i, int sum, int target, vector<vector<int>>&ans, vector<int>&store, vector<int>&can){
+        if(i == can.size()){
+            if(sum == target){
+                ans.push_back(store);
+            }
             return;
         }
-        for(int i = ind; i < candidates.size(); i++)
-        {
-            if(i > ind and candidates[i] == candidates[i-1]) continue;
-            if(candidates[i] > k) break;
-            p.push_back(candidates[i]);
-            com(i + 1,k - candidates[i], candidates, p, ans);
-            p.pop_back();
+        if(sum == target){
+            ans.push_back(store);
+            return;
         }
+        if(sum+can[i] > target) return;
+        store.push_back(can[i]);
+        sum += can[i];
+        compute(i+1, sum, target, ans, store, can);
+        store.pop_back();
+        sum -= can[i];
+        while(i+1 < can.size() && can[i] == can[i+1])i++;
+        compute(i+1, sum, target, ans, store, can);
     }
-
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) 
-    {
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         sort(candidates.begin(), candidates.end());
-        int i = 0;
-        vector<int>p;
         vector<vector<int>>ans;
-        com(i, target, candidates, p, ans);  
-        return ans;      
+        vector<int>store;
+        int i = 0;
+        int sum = 0;
+        compute(i, sum, target, ans, store, candidates);
+        return ans;
     }
 };
