@@ -1,36 +1,28 @@
 class Solution {
 public:
-    void com(int ind, vector<int>nums, vector<int>p, map<vector<int>, int>&ans)
-    {
-        if(ind >= nums.size())
-        {
-            if(ind == nums.size())
-            {
-                sort(p.begin(), p.end());
-                ans[p] += 1;
-                return;
-            }
+    void compute(int i, vector<vector<int>>&ans, vector<int>&nums, vector<int>&group, int n){
+        if(i == n){
+            ans.push_back(group);
             return;
         }
-
-        p.push_back(nums[ind]);
-        com(ind + 1, nums, p, ans);
-        p.pop_back();
-        com(ind + 1, nums, p, ans);
-
-    }
-    vector<vector<int>> subsetsWithDup(vector<int>& nums) 
-    {
-        map<vector<int>, int>ans;
-        int i = 0;
-        vector<int>n;
-        com(i, nums, n, ans);
-        vector<vector<int>>finalans;
-        for(auto a: ans)
-        {
-            finalans.push_back(a.first);
+        else{
+            group.push_back(nums[i]);
+            compute(i+1, ans, nums, group, n);
+            group.pop_back();
+            while(i+1 < n && nums[i] == nums[i+1]){
+                i++;
+            }
+            compute(i+1, ans, nums, group, n);
         }
-       // sort(finalans.begin(), finalans.end());
-        return finalans;
+    }
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>group;
+        int i = 0;
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        compute(i, ans, nums, group, n);
+        sort(ans.begin(), ans.end());
+        return ans;
     }
 };
