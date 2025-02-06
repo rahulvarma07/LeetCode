@@ -1,19 +1,22 @@
 class Solution {
 public:
-    int maxOperations(vector<int>& nums, int k) {
-        unordered_map<int, int>check;
-        int ans = 0;
-        for(int i = 0; i < nums.size(); i++){
-            int t = k-nums[i];
-            if(check.find(t) != check.end()){
+    int maxOperations(vector<int>& nums, int k){
+        int l = 0, h = nums.size()-1, ans = 0;
+        sort(nums.begin(), nums.end());
+        while(l < h){
+            int sum = nums[l]+nums[h];
+            if(sum == k){
                 ans++;
-                check[t]--;
-                if(check[t] == 0) check.erase(t);
+                l++;
+                h--;
+            }
+            else if(sum < k){
+                l++;
             }
             else{
-                check[nums[i]]++;
+                h--;
             }
-        }
+        } 
         return ans;
     }
 };
