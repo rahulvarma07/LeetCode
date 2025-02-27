@@ -1,22 +1,23 @@
 class Solution {
-public:
-    void computeCombinations(int i, string &str, vector<string>&mp, vector<string>&ans, string &digits){
-        if(i == digits.size()) ans.push_back(str);
-        else{
-            for(auto a: mp[digits[i]-'2']){
-            str += a;
-            computeCombinations(i+1, str, mp, ans, digits);
-            str.pop_back();
-            }
+public: 
+    vector<string>check = {"abc","def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    vector<string>ans;
+    void compute(string &digits, int ind, string gen){
+        if(ind == digits.size()){
+            ans.push_back(gen);
+            return;
+        }
+        int x = (digits[ind]-'0')-2;
+        for(auto a:check[x]){
+            gen += a;
+            compute(digits, ind+1, gen);
+            gen.pop_back();
         }
     }
-
     vector<string> letterCombinations(string digits) {
         if(digits.size() == 0) return {};
-        vector<string>mp = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        vector<string>ans;
-        string str = "";
-        computeCombinations(0, str, mp, ans, digits);
+        string gen = "";
+        compute(digits, 0, gen);
         return ans;
     }
 };
