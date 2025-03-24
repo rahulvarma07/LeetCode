@@ -20,17 +20,11 @@ public:
             x += 1;
         }
         ans.push_back(p);
-        // for(int i = 0; i< ans.size(); i++)
-        // {
-        //     for(auto a: ans[i]) cout << a << " ";
-        //     cout << endl;
-        // }
         int count = 0;
         for(int i = 0; i < ans.size(); i++)
         {
             count += (ans[i][1] - ans[i][0]) + 1;
         }
-        //cout << count << " ";
         return (days - count);
     }
 };
