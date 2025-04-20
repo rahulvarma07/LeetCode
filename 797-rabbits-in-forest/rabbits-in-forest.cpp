@@ -7,11 +7,9 @@ public:
         for(auto a:rab){
             int req = a.first+1;
             int cnt = a.second;
-            //cout << req << " ";
-            while(cnt > 0){
-                //cout << cnt << " ";
+            ans += (int)((req)*(cnt/req));
+            if(cnt%req != 0){
                 ans += req;
-                cnt -= req;
             }
             cout << endl;
         }
