@@ -18,6 +18,7 @@ public:
         Trav(root->right, p1+1, p2+1);
         mp[{p2,p1}].push_back(root->val);
     }
+    
     vector<vector<int>> verticalTraversal(TreeNode* root) {
         Trav(root, 0, 0);
         map<int, vector<int>>checks;
