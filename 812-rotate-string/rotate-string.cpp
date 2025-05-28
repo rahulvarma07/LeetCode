@@ -1,14 +1,17 @@
 class Solution {
 public:
     bool rotateString(string s, string goal) {
+        if(s.size() != goal.size()) return false;
         if(s == goal) return true;
+        int n = s.size();
         string str = "";
-        for(int i = 0; i < s.size(); i++){
-            char ch = goal.back();
-            goal.pop_back();
-            str = ch+goal;
-            goal = str;
-            if(s == goal) return true;
+        while(n--){
+            char ch = s.back();
+            s.pop_back();
+            str = ch+s;
+            if(str == goal) return true;
+            s = str;
+            str = "";
         }
         return false;
     }
