@@ -7,7 +7,7 @@ public:
             return;
         }
         for(int i = 0; i < n; i++){
-            int flag = 0;
+            bool flag = 0;
             // Checking Top
             for(int j = ind-1; j >= 0; j--){
                 if(ans[j][i] == 'Q'){
