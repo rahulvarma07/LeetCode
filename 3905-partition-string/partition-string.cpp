@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<string> partitionString(string s) {
-        map<string, bool> check;
+        unordered_map<string, bool> check;
         vector<string> ans;
         string str = "";
         for(int i = 0; i < s.size(); i++){
