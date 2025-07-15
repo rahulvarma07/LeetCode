@@ -11,19 +11,15 @@
  */
 class Solution {
 public:
-    int ans = 0;
-    void Trav(TreeNode* root, long long int val){
-        if(root == NULL) return;
-        if(root->left == NULL && root->right == NULL){
-            val += (root->val);
-            ans += val;
-            return;
-        }
-        Trav(root->left, (val+(root->val))*10);
-        Trav(root->right, (val+(root->val))*10);
+    int helper(TreeNode* root, int ans){
+        if(root == NULL) return 0;
+        if(root->left == NULL && root->right == NULL) return (ans*10 + root->val);
+        int leftHelp = helper(root->left, (ans*10)+root->val);
+        int rightHelp = helper(root->right, (ans*10)+root->val);
+        return leftHelp + rightHelp;
     }
     int sumNumbers(TreeNode* root) {
-        Trav(root, 0);
-        return ans;
+        if(root == NULL) return 0;
+        return helper(root, 0);
     }
 };
