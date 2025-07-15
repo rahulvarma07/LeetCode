@@ -10,57 +10,47 @@
  */
 class Solution {
 public:
-    ListNode* ReverseNodes(ListNode* head){
-        if(head == NULL) return head;
+    ListNode* reverse(ListNode* head){
         ListNode* prev = NULL;
-        ListNode* pres = head;
-        while(pres){
-            ListNode* fut = pres->next;
-            pres->next = prev;
-            prev = pres;
-            pres = fut;
+        ListNode* curr = head;
+        while(curr){
+            ListNode* nextt =  curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextt;
         }
         return prev;
     }
-
-    ListNode* reverseKGroup(ListNode* head, int k) {
-        if(head == NULL) return head;
-        int cnt = 1;
+    ListNode* reverseKGroup(ListNode* head, int k){
         if(k == 1) return head;
-        ListNode* ans = new ListNode(-1);
-        ListNode* ansHead = ans;
-        ListNode* dummy = head;
-        ListNode* dummyHead = dummy;
-        head = head->next;
-        while(head != NULL){
-            cnt++;
-            dummy->next = head;
-            dummy = dummy->next;
-            head = head->next;
-            if(cnt%k == 0){
-                cout << cnt << " ";
-                dummy->next = NULL;
-                ListNode* reversed = ReverseNodes(dummyHead);
-                while(reversed){
-                    ans->next = reversed;
-                    ans = ans->next;
-                    reversed = reversed->next;
-                }
-                cout << endl;
-                dummyHead = head;
-                dummy = head;
-                if(head){
-                   cnt++;
-                    head = head->next;
-                }
+
+        int cnt = 1;
+        ListNode* start = head;
+        ListNode* temp = head;
+        ListNode* prev = NULL;
+        while(temp){
+            if(cnt == 1){
+                start = temp;
             }
+            else if(cnt == k){
+                ListNode* end = temp->next;
+                temp->next = NULL;
+                ListNode* rev =  reverse(start);
+                if(prev){
+                    prev->next = rev;
+                }
+                else{
+                    head = rev;
+                }
+                start->next = end;
+                prev = start;
+                temp = start;
+                cnt = 0;
+            }
+            cnt++;
+            temp = temp->next;
         }
-        while(dummyHead){
-            ans->next = dummyHead;
-            dummyHead = dummyHead->next;
-            ans = ans->next;
-        }
-        ans->next = NULL;
-        return ansHead->next;
+
+        return head;
     }
 };
