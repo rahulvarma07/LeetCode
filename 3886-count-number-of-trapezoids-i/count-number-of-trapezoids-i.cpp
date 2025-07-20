@@ -16,15 +16,11 @@ public:
             corPoints.push_back(score);
         }
         sort( corPoints.begin(),  corPoints.end());
-        for(auto a:  corPoints) cout << a << " ";
-        cout << endl;
         pref.resize(corPoints.size(), 0);
         for(int i = 0; i < corPoints.size(); i++){
             pref[i] = corPoints[i];
             pref[i] += (i == 0 ? 0ll : pref[i-1]);
         }
-        for(auto a: pref) cout << a << " ";
-
         ll ans = 0;
         for(int i = pref.size()-2; i >= 0; i--){
             ll a = pref[i] % MOD;
