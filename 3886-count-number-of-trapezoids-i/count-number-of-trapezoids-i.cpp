@@ -15,7 +15,6 @@ public:
             ll score = n * (n+1)/2;
             corPoints.push_back(score);
         }
-        sort( corPoints.begin(),  corPoints.end());
         pref.resize(corPoints.size(), 0);
         for(int i = 0; i < corPoints.size(); i++){
             pref[i] = corPoints[i];
