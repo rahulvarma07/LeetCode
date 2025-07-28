@@ -1,34 +1,23 @@
 class Solution {
 public:
-    void generateSubSets(vector<vector<int>>&sub, vector<int>p,vector<int>&nums,int ind = 0){
+    void generateSubSets(vector<int>nums, int &res, int ind, vector<int>p, int &ans){
         if(ind >= nums.size()){
-            if(p.size() != 0)sub.push_back(p);
+            int x = 0;
+            for(auto a:p) x|=a;
+            if(x == res)ans++;
             return;
         }
         p.push_back(nums[ind]);
-        generateSubSets(sub, p, nums, ind+1);
+        generateSubSets(nums, res, ind+1, p, ans);
         p.pop_back();
-        generateSubSets(sub, p, nums, ind+1);
+        generateSubSets(nums, res, ind+1, p, ans);
     }
     int countMaxOrSubsets(vector<int>& nums) {
-        vector<vector<int>>res;
-        vector<int>push;
-        int i = 0, ans = 0, maxx = INT_MIN;
-        generateSubSets(res, push, nums, i);
-        for(auto a: res){
-            int x = 0;
-            for(auto b:a){
-                x |= b;
-            }
-            maxx = max(maxx, x);
-        }
-        for(int i = 0; i < res.size(); i++){
-            int x = 0;
-            for(int j = 0; j < res[i].size(); j++){
-                x  |= res[i][j];
-            }
-            if(x == maxx) ans++;
-        }
+        int res = 0;
+        for(auto a:nums) res |= a;
+        vector<int>p;
+        int ans = 0;
+        generateSubSets(nums, res, 0, p, ans);
         return ans;
     }
 };
