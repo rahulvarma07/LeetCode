@@ -25,6 +25,7 @@ public:
             temp.pop_back();
         }
     }
+    
     void mergeSort(int left, int right, vector<int>&arr){
         if(left == right) return;
         int mid = (left + right)/2;
