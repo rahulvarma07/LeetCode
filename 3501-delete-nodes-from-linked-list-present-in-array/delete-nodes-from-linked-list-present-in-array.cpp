@@ -19,11 +19,8 @@ public:
             if(mymap.find(head->val) == mymap.end()){
                 res->next = head;
                 res = res->next;
-                head = head->next;
             }
-            else{
-                head = head->next;
-            }
+            head = head->next;
         }
         res->next = NULL;
         res = res->next;
