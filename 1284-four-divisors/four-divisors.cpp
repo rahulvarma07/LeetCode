@@ -9,9 +9,9 @@ public:
                     sum += i;
                     cnt++;
                     if(i * i != a) {
-                    sum += (a / i);
-                    cnt++;
-                }
+                        sum += (a / i);
+                        cnt++;
+                    }
                 }
             }
             if(cnt == 4) {
