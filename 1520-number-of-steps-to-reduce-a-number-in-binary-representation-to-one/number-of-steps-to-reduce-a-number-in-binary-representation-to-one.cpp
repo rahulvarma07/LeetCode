@@ -1,11 +1,6 @@
 class Solution {
 public:
     int numSteps(string s) {
-        // 1000
-     // 0100
-     // 0010
-     // 0001
-
      // 1101
      // 1110
      // 0111
