@@ -4,8 +4,11 @@ public:
         int n = nums.size();
         unordered_set<int> mySet;
         for(int i = 0; i < n; i++){
+            if(mySet.find(nums[i]) != mySet.end()){
+                return true;
+            }
             mySet.insert(nums[i]);
         }
-        return (n != mySet.size());
+        return false;
     }
 };
