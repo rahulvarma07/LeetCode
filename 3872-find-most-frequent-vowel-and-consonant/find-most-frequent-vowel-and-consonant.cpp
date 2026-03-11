@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxFreqSum(string s) {
-        map<char, int> freq;
+        unordered_map<char, int> freq;
         for(int i = 0; i < s.size(); i++) {
             freq[s[i]] += 1;
         }
