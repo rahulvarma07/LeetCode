@@ -4,8 +4,10 @@ public:
         vector<bool> isPrime(1e5+100, true);
         isPrime[1] = false;
         for(int i = 2; i < isPrime.size(); i++) {
-            for(int j = i+i; j < isPrime.size(); j += i) {
-                isPrime[j] = false;
+            if(isPrime[i]) {
+                for(int j = i+i; j < isPrime.size(); j += i) {
+                    isPrime[j] = false;
+                }
             }
         }
         vector<int> nextPrime(1e5+100, 0);
