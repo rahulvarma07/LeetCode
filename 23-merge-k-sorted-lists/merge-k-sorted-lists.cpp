@@ -11,27 +11,29 @@
 
 class Comparator {
 public:
-    bool operator()(ListNode* x, ListNode* y){
-        return (x->val)>(y->val);
+    bool operator()(ListNode* node1, ListNode* node2) {
+        return node1->val > node2->val;
     }
- };
+};
+
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        ListNode* head = new ListNode(-1);
+        ListNode* temp = head; 
         priority_queue<ListNode*, vector<ListNode*>, Comparator> pq;
-        for(ListNode* list : lists) {
-            if(list) pq.push(list);
+        for(ListNode* a : lists) {
+           if(a != NULL) pq.push(a);
         }
-        ListNode *ans = new ListNode(-1), *t;
-        t=ans;
-        while(!(pq.empty())) {
-            ListNode *top = pq.top();
-            cout<<top->val<<' ';
+        while(!pq.empty()) {
+            ListNode* topNode = pq.top();
             pq.pop();
-            t->next = top;
-            t=top;
-            if(top and top->next) pq.push(top->next);
+            temp->next = topNode;
+            temp = temp->next;
+            if(topNode->next != NULL) {
+                pq.push(topNode->next);
+            }
         }
-        return ans->next;
+        return head->next;
     }
 };
