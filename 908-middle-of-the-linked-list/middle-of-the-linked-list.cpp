@@ -12,17 +12,12 @@ class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
         if(head->next == NULL) return head;
-        ListNode* temp = head;
-        int len = 0;
-        while(temp != NULL) {
-            len++;
-            temp = temp->next;
-        } // O(n)
-        // l = 5 h = l/2 -> 2
-        int h = len/2;
-        while(h--) {
-            head = head->next;
-        } // O(n/2)
-        return head;
+        ListNode* rabbit = head;
+        ListNode* tortise = head;
+        while(rabbit != NULL and rabbit->next != NULL) {
+            tortise = tortise->next;
+            rabbit = rabbit->next->next;
+        }
+        return tortise;
     }
 };
