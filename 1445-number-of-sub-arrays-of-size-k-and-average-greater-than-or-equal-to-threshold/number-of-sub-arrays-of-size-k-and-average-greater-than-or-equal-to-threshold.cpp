@@ -5,13 +5,13 @@ public:
         for(int j = 0; j < k; j++) {
             sum += arr[j];
         }
+        if(sum/k >= threshold) ans++;
         for(int j = k; j < arr.size(); j++) {
-            if(sum/k >= threshold) ans++;
             sum += arr[j];
             sum -= arr[i];
             i++;
+            if(sum/k >= threshold) ans++;
         }
-        if(sum/k >= threshold) ans++;
         return ans;
     }
 };
