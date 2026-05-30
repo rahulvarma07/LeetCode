@@ -6,9 +6,7 @@ public:
             int cp = position[i], cost = 0;
             for(int j = 0; j < position.size(); j++) {
                 int pp = position[j];
-                if(cp != pp) {
-                    if(abs(pp-cp) % 2 != 0) cost++;
-                }
+                if(abs(pp-cp) % 2 != 0) cost++;
             }
             ans = min(ans, cost);
         }
