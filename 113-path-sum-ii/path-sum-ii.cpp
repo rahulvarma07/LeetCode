@@ -11,24 +11,21 @@
  */
 class Solution {
 public:
-    vector<vector<int>>ans;
-    void trav(TreeNode* root, int TarSum, vector<int>path){
+    void bfs(TreeNode* root, int target, vector<vector<int>> &ans, vector<int> p) {
         if(root == NULL) return;
-        if(root->left == NULL && root->right == NULL){
-            path.push_back(root->val);
-            TarSum -= root->val;
-            if(TarSum == 0){
-                ans.push_back(path);
+        target -= root->val;
+        p.push_back(root->val);
+        if(root->left == NULL and root->right == NULL) {
+            if(target == 0) {
+                ans.push_back(p);
             }
-            return;
         }
-        path.push_back(root->val);
-        trav(root->left, TarSum-root->val, path);
-        trav(root->right, TarSum-root->val, path);
+        bfs(root->left, target, ans, p);
+        bfs(root->right, target, ans, p);
     }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        vector<int>path;
-        trav(root, targetSum, path);
+        vector<vector<int>> ans;
+        bfs(root, targetSum, ans, {});
         return ans;
     }
 };
