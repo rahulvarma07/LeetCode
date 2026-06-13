@@ -1,31 +1,19 @@
 class Solution {
 public:
-    vector<string>ans;
-    void compute(int ind, int size, string str, string &check){
-        // Checking
-        if(ind == size){
-            int cnt = 0, flag = 1;
-            for(int i = 0; i < str.size(); i++){
-                if(str[i] == '(') cnt++;
-                else if(str[i] == ')') cnt--;
-                if(cnt < 0){
-                    flag = 0;
-                    break;
-                }
-            }
-            if(flag == 1 && cnt == 0) ans.push_back(str);
+    void gen(string str, vector<string> &ans, string &check, int c, int &n) {
+        if(str.size() == n) {
+            if(c == 0) ans.push_back(str);
             return;
         }
-        for(int i = 0; i < check.size(); i++){
-            str += check[i];
-            compute(ind+1, size, str, check);
-            str.pop_back();
-        }
+        if(c < 0) return;
+        gen(str+'(', ans, check, c+1, n);
+        gen(str+')', ans, check, c-1, n);
     }
     vector<string> generateParenthesis(int n) {
+        vector<string> ans;
         string str = "", check = "()";
-        int ind = 0;
-        compute(ind, n*2, str, check);
-        return ans; 
+        n = n*2;
+        gen(str, ans, check, 0, n);
+        return ans;
     }
 };
