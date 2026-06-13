@@ -5,7 +5,7 @@ public:
             if(c == 0) ans.push_back(str);
             return;
         }
-        if(c < 0) return;
+        if(c > n/2 || c < 0) return;
         gen(str+'(', ans, check, c+1, n);
         gen(str+')', ans, check, c-1, n);
     }
