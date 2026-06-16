@@ -1,35 +1,23 @@
 class Solution {
 public:
-    vector<int> nextGreaterElements(vector<int>& data) {
-        int n = data.size();
-        vector<int>ans(n, -1);
-        stack<int>st;
-        st.push(data[n-1]);
-        for(int i = n-2; i >= 0; i--){
-            if(st.empty()){
-                st.push(data[i]);
-                continue;
-            }
-            while(!st.empty() && st.top() <= data[i]){
-                st.pop();
-            }
-            if(!st.empty()){
-                ans[i] = st.top();
-            }
-            st.push(data[i]);
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n = nums.size(), m = n*2;
+        vector<int> ans(n, -1);
+        vector<int> nums2(m, 0);
+        for(int i = 0; i < n; i++) {
+            nums2[i] = nums[i];
+            nums2[n+i] = nums[i];
         }
-        for(int i = n-1; i >= 0; i--){
-            if(st.empty()){
-                st.push(data[i]);
-                continue;
-            }
-            while(!st.empty() && st.top() <= data[i]){
+        stack<int> st;
+        st.push(nums2[m-1]);
+        for(int i = m-2; i >= 0; i--) {
+            while(!st.empty() && nums2[i] >= st.top()) {
                 st.pop();
             }
-            if(!st.empty()){
+            if(!st.empty() && i < n) {
                 ans[i] = st.top();
             }
-            st.push(data[i]);
+            st.push(nums2[i]);
         }
         return ans;
     }
