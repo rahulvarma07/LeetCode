@@ -1,10 +1,11 @@
 class Solution {
 public:
     vector<int> sortArrayByParity(vector<int>& nums) {
-        int i = 0, j = nums.size()-1;
-        vector<int> ans(nums.size(), 0);
-        for(int x = 0; x < nums.size(); x++) {
-            if(nums[x]%2 == 0) {
+        int n = nums.size();
+        vector<int> ans(n, 0);
+        int i = 0, j = n-1;
+        for(int x = 0; x < n; x++) {
+            if(nums[x] % 2 == 0) {
                 ans[i] = nums[x];
                 i++;
             }else{
