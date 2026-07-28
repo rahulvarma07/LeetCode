@@ -1,12 +1,7 @@
-<h2><a href="https://leetcode.com/problems/smallest-palindromic-rearrangement-i">Smallest Palindromic Rearrangement I</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>You are given a <strong>palindromic</strong> string <code>s</code>.</p>
+<h2><a href="https://leetcode.com/problems/smallest-palindromic-rearrangement-i">Smallest Palindromic Rearrangement I</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>You are given a <strong><span data-keyword="palindrome-string">palindromic</span></strong> string <code>s</code>.</p>
 
-<p>Return the lexicographically <strong>smallest</strong> palindromic permutation of <code>s</code>.</p>
+<p>Return the <strong><span data-keyword="lexicographically-smaller-string">lexicographically smallest</span></strong> palindromic <span data-keyword="permutation-string">permutation</span> of <code>s</code>.</p>
 
-<p>A string is <strong>palindromic</strong> if it reads the same forward and backward.</p>
-
-<p>A <strong>permutation</strong> is a rearrangement of all the characters of a string.</p>
-A string <code>a</code> is <strong>lexicographically smaller</strong> than a string <code>b</code> if in the first position where <code>a</code> and <code>b</code> differ, string <code>a</code> has a letter that appears earlier in the alphabet than the corresponding letter in <code>b</code>.<br />
-If the first <code>min(a.length, b.length)</code> characters do not differ, then the shorter string is the lexicographically smaller one.
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
