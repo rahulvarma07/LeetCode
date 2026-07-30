@@ -1,37 +1,33 @@
 class Solution {
 public:
     vector<string> uncommonFromSentences(string s1, string s2) {
-        unordered_map<string, int>check;
-        vector<string>ans;
+        vector<string> ans;
+        unordered_map<string, int> freq;
         string str = "";
-        for(int i = 0; i < s1.size(); i++){
-            if(s1[i] != ' '){
-                str += s1[i];
-            }
-            else{
-                check[str]++;
+        // traverse in s1 
+        for(int i = 0; i < s1.size(); i++) {
+            if(s1[i] != ' ') str += s1[i];
+            if(s1[i] == ' ' || i == s1.size()-1) {
+                freq[str]++;
                 str = "";
             }
         }
-        check[str]++;
-        str = "";
-        for(int i = 0; i < s2.size(); i++){
-            if(s2[i] != ' '){
-                str += s2[i];
-            }
-            else{
-                check[str]++;
+        // traverse in s2
+        for(int i = 0; i < s2.size(); i++) {
+            if(s2[i] != ' ') str += s2[i];
+            if(s2[i] == ' ' || i == s2.size()-1) {
+                freq[str]++;
                 str = "";
             }
         }
-        check[str]++;
-        str = "";
-        for(auto a:check){
-            if(a.second == 1){
+
+        // { this : 2, apple:2, is:2, sweet:1, sour : 1}
+        for(auto a : freq) {
+            if(a.second == 1) {
                 ans.push_back(a.first);
             }
         }
-        check.clear();
+        
         return ans;
     }
 };
