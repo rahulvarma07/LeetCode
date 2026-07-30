@@ -1,30 +1,15 @@
 class Solution {
 public:
     int minimumPushes(string word) {
-        vector<int>myVec(26, 0);
-        for(auto a: word){
-            myVec[a - 'a'] += 1;
-        }
-        sort(myVec.rbegin(), myVec.rend());
+        vector<int> freq(26, 0);
+        for(auto a: word) freq[a-'a']++;
+        sort(freq.begin(), freq.end(), greater<int>());
         int ans = 0;
-        int res;
-        for(int i = 0; i < myVec.size(); i++){
-            if(i <= 7){
-                res = 1;
-                ans += (myVec[i] * res);
-            }
-            else if(i <= 15){
-                res = 2;
-                ans += (myVec[i] * res);
-            }
-            else if(i <= 23){
-                res = 3;
-                ans += (myVec[i] * res);
-            }
-            else{
-                res = 4;
-                ans += (myVec[i] * res);
-            }
+        for(int i = 0; i < 26; i++) {
+            if(i < 8) ans = ans + freq[i];
+            else if(i < 16) ans = ans + freq[i] * 2;
+            else if(i < 24) ans = ans + freq[i] * 3;
+            else ans = ans + freq[i] * 4;
         }
         return ans;
     }
