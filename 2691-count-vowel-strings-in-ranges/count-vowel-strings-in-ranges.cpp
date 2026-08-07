@@ -1,29 +1,25 @@
 class Solution {
 public:
-    bool isVowel(char str){
-        if(str == 'a' || str == 'e' || str == 'i' || str == 'o' || str == 'u'){
-            return true;
-        }
+    bool isVowel(char ch) {
+        if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') return true;
         return false;
     }
     vector<int> vowelStrings(vector<string>& words, vector<vector<int>>& queries) {
-        vector<int>pref(words.size(), 0);
-        int cnt = 0;
-        for(int i = 0; i < words.size(); i++){
-            int n = words[i].size()-1;
-            if(isVowel(words[i][0]) && (isVowel(words[i][n]))){
-                cnt++;
-            }
-            pref[i] = cnt;
+        // w = ["aba", "bcb", "ece", "aa", "e"]
+        int n = words.size(), q = queries.size(), c = 0;
+        vector<int> pref(n, 0);
+        vector<int> ans;
+        for(int i = 0; i < n; i++) {
+            int m = words[i].size();
+            if(isVowel(words[i][0]) && isVowel(words[i][m-1])) c++;
+            pref[i] = c;
         }
-        vector<int>ans(queries.size(), 0);
-        for(int i = 0; i < queries.size(); i++){
-            if(queries[i][0] == 0){
-                ans[i] = pref[queries[i][1]];
-                continue;
-            }
-            else{
-                ans[i] = (pref[queries[i][1]] - pref[queries[i][0]-1]);
+        for(int i = 0; i < q; i++) {
+            int l = queries[i][0], r = queries[i][1];
+            if(l == 0) {
+                ans.push_back(pref[r]);
+            }else {
+                ans.push_back(pref[r]-pref[l-1]);
             }
         }
         return ans;
