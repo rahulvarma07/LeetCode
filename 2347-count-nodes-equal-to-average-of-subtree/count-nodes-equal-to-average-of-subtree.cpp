@@ -11,30 +11,18 @@
  */
 class Solution {
 public:
-    void getAverage(TreeNode* root, int &sum, int &cnt) {
-        if(root == NULL) return;
-        sum += root->val;
-        cnt++;
-        getAverage(root->left, sum, cnt);
-        getAverage(root->right, sum, cnt);
-    }
-    void traverse(TreeNode* root, int &ans) {
-        if(root == NULL) return;
-        if(root->left == NULL && root->right == NULL) {
-            ans++;
-            return;
-        }
-        int sum = 0, cnt = 0;
-        getAverage(root, sum, cnt);
-        if(root->val == (int)(sum/cnt)) {
-            ans++;
-        }
-        traverse(root->left, ans);
-        traverse(root->right, ans);
+    int ans = 0;
+    vector<int> getAverage(TreeNode* root) {
+        if(root == NULL) return {0, 0};
+        vector<int> l = getAverage(root->left);
+        vector<int> r = getAverage(root->right);
+        int totalSum = l[1] + r[1] + root->val;
+        int totalCnt = l[0] + r[0] + 1;
+        if(root->val == totalSum/totalCnt) ans++;
+        return {totalCnt, totalSum};
     }
     int averageOfSubtree(TreeNode* root) {
-        int ans = 0;
-        traverse(root, ans);
-        return ans;   
+        getAverage(root);
+        return ans;
     }
 };
