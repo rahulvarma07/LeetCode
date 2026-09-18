@@ -6,7 +6,7 @@ public:
     static bool built;        
 
     void palindromes() {
-        if(built) return;      // fix: skip if already generated in a prior test case
+        if(built) return;    
         for(int i = 1; i <= 100000; i++) {
             string str = to_string(i);
             string r = str;
@@ -66,7 +66,6 @@ public:
     }
 };
 
-// Out-of-class definitions required for static members:
 vector<ll> Solution::evens;
 vector<ll> Solution::odds;
 bool Solution::built = false;
