@@ -1,7 +1,7 @@
 class Twitter {
 public:
 
-    map<int, set<int>> followerList;
+    map<int, unordered_set<int>> followerList;
     map<int, vector<pair<int, int>>> tweets;
     long long int c;
 
