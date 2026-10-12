@@ -2,6 +2,7 @@ class Solution {
 public:
     vector<int> totalBits = vector<int>(32, 0);
     int mod = 1e9+7;
+    
     void setTheBits(int num) {
         int i = 32;
         while(num) {
