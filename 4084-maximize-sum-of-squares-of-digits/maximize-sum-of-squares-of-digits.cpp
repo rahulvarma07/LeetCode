@@ -4,13 +4,11 @@ public:
         string str;
         for(int i = 1; i <= num; i++) str += '9';
         int currSum = 9*num, i = num-1;
-        bool flag = (currSum == sum);
         while(i >= 0 && currSum > sum) {
             currSum--;
             str[i] = str[i]-1;
             if(str[i] == '0') i--;
-            flag = (currSum == sum);
         }
-        return (flag ? str : "");
+        return ((currSum == sum) ? str : "");
     }
 };
